@@ -32,14 +32,14 @@ def get_text_str() -> str:
     """
     Открывает файл и забирает содержимое в строку.
     """
-    pass
+    return "Какая-то строка текста для анализа. Ё! ё"
 
 
-def get_word_type():
+def get_word_type() -> list:
     """
     Создает список и добавляет в него части речи из виджета «Части речи»
     """
-    pass
+    return ["глагол", "существительное"]
 
 
 def prepare_text(text_str: str) -> list:
@@ -48,7 +48,7 @@ def prepare_text(text_str: str) -> list:
     Заменяет букву «ё» на «е».
     Разбирает текст на слова и делает из них список.
     """
-    pass
+    return ["какая-то", "строка", "текста", "для", "анализа.", "ё!", "ё"]
 
 
 def morph_analyze_text(text_list: list, word_type_list: list) -> list:
@@ -57,7 +57,7 @@ def morph_analyze_text(text_list: list, word_type_list: list) -> list:
     Добавляет все существительные в нормальной форме в новый список.
     TODO: брать парсы с максимальным score
     """
-    pass
+    return ["какая-то", "строка", "текста", "для", "анализа.", "е", "е"]
 
 
 def count_words(normal_list: list) -> dict:
@@ -68,14 +68,18 @@ def count_words(normal_list: list) -> dict:
     Количество пар в словаре зависит от выбранного пользователем в пункте
     «Количество слов в результате»
     """
-    pass
+    return {"слово" : 10, "еще одно" : 7}
 
 
 def result_to_widget(result_dict: dict):
     """
     Записывает пары словаря построчно по убыванию в виджет «Результат»
     """
-    pass
+    result_list = []
+
+    for key, value in result_dict.items():
+        line = f"{key} : {value}\n"
+        result_list.append(line)
 
 
 def save_result_to_file():
@@ -87,7 +91,8 @@ def save_result_to_file():
 
 
 def main():
-    """
-    Основная
-    """
-    pass
+    word_type_list = get_word_type()
+    text_str = get_text_str()
+    text_list = prepare_text(text_str)
+    normal_list = morph_analyze_text(text_list, word_type_list)
+    result_dict = count_words(normal_list)
